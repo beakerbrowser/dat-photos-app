@@ -7,6 +7,11 @@
 
   // setup
   let archive, archiveInfo, input
+  let selectedImages = []
+
+  const shareBtn = document.getElementById('share-btn')
+  shareBtn.addEventListener('click', onShare)
+
   try {
     input = document.querySelector('input[type="file"]')
     archive = new DatArchive(window.location)
@@ -34,6 +39,28 @@
     // Fork the app and open the forked version
     myApp = await DatArchive.fork(archive, {title: 'My Photos'})
     window.location = myApp.url
+  }
+
+  function onSelectImage (e) {
+    e.target.classList.add('selected')
+    shareBtn.disabled = false
+
+    // full src is dat://{key}/{path}, so strip dat://{key}
+    selectedImages.push(e.target.src.slice('dat://'.length + 64))
+  }
+
+  async function onShare () {
+    // create a new Dat archive
+    const newArchive = await DatArchive.create()
+
+    for (let i = 0; i < selectedImages.length; i++) {
+      const path = selectedImages[i]
+      const data = await archive.readFile(selectedImages[i], 'binary')
+      await newArchive.writeFile(path.slice('images/'.length), data)
+
+      // go to the new archive
+      window.location = newArchive.url
+    }
   }
 
   // renderers
@@ -94,8 +121,10 @@
 
   function appendImage(src) {
     if (typeof src !== 'string') return
+
     const img = document.createElement('img')
     img.src = src
+    img.addEventListener('click', onSelectImage)
     document.querySelector('.gallery-images').appendChild(img)
   }
 
