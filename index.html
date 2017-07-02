@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Photo gallery</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="main.css"/>
+  </head>
+
+  <body>
+    <div id="prompt">Loading...</div>
+    <!-- put ellipsis in :after -->
+    <label for="files">
+      Add photos
+      <input type="file" name="files" accept="image/*" multiple/>
+    </label>
+    <div class="gallery-images"></div>
+    <script src="index.js"></script>
+  </body>
+</html>
