@@ -127,7 +127,7 @@
   }
 
   function renderUAPrompt () {
-    updatePrompt('<p>Sorry! This app only works in the Beaker Browser.</p><a href="https://beakerbrowser.com/install/">Install Beaker</a>')
+    updatePrompt('<p>Sorry >.< This app only works in the Beaker Browser.</p><a class="btn primary" href="https://beakerbrowser.com/docs/install/">Install Beaker</a>')
   }
 
   function renderForkPrompt () {
@@ -147,7 +147,11 @@
 
   function updatePrompt (html) {
     if (typeof html !== 'string') return
-    document.getElementById('prompt').innerHTML = html
+    if (html.length) {
+      document.querySelector('#prompt').innerHTML = `<div class="content">${html}</div>`
+    } else {
+      document.querySelector('#prompt').innerHTML = html
+    }
   }
 
   // TODO omit?
