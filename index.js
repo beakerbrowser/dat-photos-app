@@ -50,7 +50,6 @@
   }
 
   function onToggleSelected (e) {
-    console.log('selecting')
     e.target.classList.toggle('selected')
 
     // full src is dat://{key}/{path}, so strip dat://{key}
