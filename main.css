@@ -83,10 +83,10 @@ label[for="files"] {
 
 .gallery-images:empty:before {
   position: absolute;
-  left: 40%;
+  left: 42%;
   top: 100px;
-  content: '>.<';
-  font-size: 150px;
+  content: '*';
+  font-size: 350px;
   color: #eee;
 }
 
