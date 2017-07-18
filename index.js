@@ -49,6 +49,22 @@
     selectedImages.push(e.target.src.slice('dat://'.length + 64))
   }
 
+  function onToggleSelected (e) {
+    console.log('selecting')
+    e.target.classList.toggle('selected')
+
+    // full src is dat://{key}/{path}, so strip dat://{key}
+    const path = e.target.src.slice('dat://'.length + 64)
+    const idx = selectedImages.indexOf(path)
+
+    // either add or remove the path to selectedImages
+    if (idx === -1) selectedImages.push(path)
+    else selectedImages.splice(idx, 1)
+
+    if (selectedImages.length) shareBtn.disabled = false
+    else shareBtn.disabled = true
+  }
+
   async function onShare () {
     // create a new Dat archive
     const newArchive = await DatArchive.create()
@@ -124,7 +140,7 @@
 
     const img = document.createElement('img')
     img.src = src
-    img.addEventListener('click', onSelectImage)
+    img.addEventListener('click', onToggleSelected)
     document.querySelector('.gallery-images').appendChild(img)
   }
 
