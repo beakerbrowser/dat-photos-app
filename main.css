@@ -30,6 +30,12 @@ header {
   transition: .15s background ease;
 }
 
+a.btn {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1.9;
+}
+
 .btn:hover {
   color: #00796b;
 }
