@@ -100,6 +100,10 @@ label[for="files"] {
   position: relative;
 }
 
+.gallery-images img:hover {
+  transform: scale(.95);
+}
+
 .gallery-images img.selected {
   border: 15px solid #eee;
   transform: scale(.95);
