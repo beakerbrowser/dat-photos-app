@@ -131,7 +131,7 @@
   }
 
   function renderForkPrompt () {
-    updatePrompt('<p>Welcome to Photos!</p><button id="fork-button">Get started</button>')
+    updatePrompt('<p>Welcome to Photos!</p><button id="fork-button" class="btn primary">Get started</button>')
   }
 
   function appendImage(src) {
