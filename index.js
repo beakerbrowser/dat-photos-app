@@ -71,13 +71,16 @@
     // get info
     const info = await newArchive.getInfo()
 
+    // create the /images directory
+    await newArchive.mkdir('/images')
+
     let imagesHTML = ''
 
     const styles = '<style>body{font-family:BlinkMacSystemFont;}img{max-width: 225px; margin-right: 10px;}</style>'
 
     for (let i = 0; i < selectedImages.length; i++) {
-      const path = selectedImages[i].slice('images/'.length)
-      const data = await archive.readFile(selectedImages[i], 'binary')
+      const path = selectedImages[i]
+      const data = await archive.readFile(path, 'binary')
       imagesHTML += `<img src='${path}'/>`
       await newArchive.writeFile(path, data)
     }
