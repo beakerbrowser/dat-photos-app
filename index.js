@@ -76,6 +76,7 @@
       // go to the new archive
       window.location = newArchive.url
     }
+    await newArchive.commit()
   }
 
   async function onDeleteSelected () {
