@@ -125,6 +125,7 @@ label[for="files"] {
 }
 
 .gallery-images {
+  margin-top: 15px;
   padding: 0 15px;
   position: relative;
 }
@@ -187,7 +188,7 @@ label[for="files"] {
   margin-top: 0;
 }
 
-#prompt .content a.btn {
+#prompt .content .btn {
   margin-left: 0;
   margin-top: 10px;
 }
