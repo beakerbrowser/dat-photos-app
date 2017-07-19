@@ -68,15 +68,26 @@
     // create a new Dat archive
     const newArchive = await DatArchive.create()
 
-    for (let i = 0; i < selectedImages.length; i++) {
-      const path = selectedImages[i]
-      const data = await archive.readFile(selectedImages[i], 'binary')
-      await newArchive.writeFile(path.slice('images/'.length), data)
+    // get info
+    const info = await newArchive.getInfo()
 
-      // go to the new archive
-      window.location = newArchive.url
+    let imagesHTML = ''
+
+    const styles = '<style>body{font-family:BlinkMacSystemFont;}img{max-width: 225px; margin-right: 10px;}</style>'
+
+    for (let i = 0; i < selectedImages.length; i++) {
+      const path = selectedImages[i].slice('images/'.length)
+      const data = await archive.readFile(selectedImages[i], 'binary')
+      imagesHTML += `<img src='${path}'/>`
+      await newArchive.writeFile(path, data)
     }
+
+    // write the index.html preview
+    await newArchive.writeFile('index.html', `<html>${styles}<h1>${info.title || ''}</h1><p>${info.description || ''}</p>${imagesHTML}</html>`)
     await newArchive.commit()
+
+    // go to the new archive
+    window.location = newArchive.url
   }
 
   async function onDeleteSelected () {
