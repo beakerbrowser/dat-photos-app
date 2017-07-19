@@ -46,15 +46,63 @@ a.btn {
   cursor: default;
 }
 
-.btn.upload {
+.btn.primary {
   background: #009688;
   color: #fff;
   -webkit-font-smoothing: antialiased;
   font-weight: 500;
+  border-color: #009688;
 }
 
-.btn.upload:hover {
+.btn.primary:hover {
   background: #00796b;
+}
+
+.btn.more {
+  padding: 0 10px;
+  font-size: 26px;
+}
+
+.btn.more span {
+  margin-top: -3px;
+  position: relative;
+}
+
+.more-dropdown {
+  position: absolute;
+  display: none;
+  font-size: 14px;
+  right: 20px;
+  top: 50px;
+  background: #fff;
+  border: 2px solid #009688;
+  border-radius: 5px;
+  padding: 10px 20px;
+  z-index: 3;
+}
+
+.more-dropdown > * {
+  display: block;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0f2f1;
+}
+
+.more-dropdown > *:first-child {
+  padding-top: 0;
+}
+
+.more-dropdown > *:last-child {
+  border: 0;
+  padding-bottom: 0;
+}
+
+.more-dropdown a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.more-dropdown.visible {
+  display: block;
 }
 
 input[type="file"] {

@@ -78,12 +78,31 @@
     }
   }
 
+  async function onDeleteSelected () {
+    for (let i = 0; i < selectedImages.length; i++) {
+      const path = selectedImages[i]
+
+      // remove from DOM
+      document.querySelector(`[src='${path}']`).remove()
+
+      // remove from archive
+      await archive.unlink(selectedImages[i], 'binary')
+    }
+    await archive.commit()
+  }
+
   // renderers
 
   function renderApp () {
     // clear the prompt
     updatePrompt('')
     renderGallery()
+
+    document.getElementById('more-btn').addEventListener('click', function (e) {
+      document.querySelector('.more-dropdown').classList.toggle('visible')
+    })
+
+    document.getElementById('delete-selected').addEventListener('click', onDeleteSelected)
 
     document.querySelector('input[type="file"]').addEventListener('change', function (e) {
       if (e.target.files) {
