@@ -6,7 +6,7 @@
   }
 
   // setup
-  let archive, archiveInfo, input
+  let archive, archiveInfo, albums
   let selectedImages = []
 
   const shareBtn = document.getElementById('share-btn')
@@ -16,6 +16,7 @@
     input = document.querySelector('input[type="file"]')
     archive = new DatArchive(window.location)
     archiveInfo = await archive.getInfo()
+    albums = JSON.parse(await archive.readFile('albums.json'))
   } catch (err) {
     renderPrompt('<p>Something went wrong.</p><a href="https://github.com/taravancil/p2p-photo-gallery">Report an issue</a>')
   }
@@ -64,15 +65,17 @@
     else shareBtn.disabled = true
   }
 
-  async function onShare () {
+  async function onCreateAlbum (e) {
     // create a new Dat archive
-    const newArchive = await DatArchive.create()
-
-    // get info
-    const info = await newArchive.getInfo()
+    const album = await DatArchive.create()
+    const info = await album.getInfo()
 
     // create the /images directory
-    await newArchive.mkdir('/images')
+    await album.mkdir('/images')
+
+    // write the albums URL to albums.json
+    albums.push(album.url)
+    await archive.writeFile('albums.json', JSON.stringify(albums))
 
     let imagesHTML = ''
 
@@ -90,7 +93,7 @@
     await newArchive.commit()
 
     // go to the new archive
-    window.location = newArchive.url
+    window.location = album.url
   }
 
   async function onDeleteSelected () {
@@ -114,7 +117,7 @@
   function renderApp () {
     // clear the prompt
     updatePrompt('')
-    renderGallery()
+    renderAlbums()
 
     document.getElementById('more-btn').addEventListener('click', function (e) {
       document.querySelector('.more-dropdown').classList.toggle('visible')
@@ -146,7 +149,43 @@
           reader.readAsArrayBuffer(file)
         }
       }
-    })
+    })*/
+  }
+
+  function renderAlbums () {
+    for (let i = 0; i < albums.length; i++) {
+      appendAlbum(new DatArchive(albums[i]))
+    }
+  }
+
+  async function appendAlbum (album) {
+    const info = await album.getInfo()
+    let albumHTML = ''
+
+    // get the count of images in the album
+    const images = await album.readdir('/images')
+
+    // create the album element
+    const el = document.createElement('div')
+    el.classList.add('album')
+
+    if (!images.length) {
+      el.classList.add('empty')
+      albumHTML += '<div class="placeholder">No photos</div>'
+    } else {
+      // add the first image to the album preview
+      albumHTML += `<img src="dat://${album.url}${images[0]}"/>`
+    }
+
+    // add the title
+    albumHTML += `<div class="title">${info.title || '<em>Untitled</em>'}</div>`
+
+    // add the image count to the HTML
+    albumHTML += `<div class="photo-count">${images.length} photos</div>`
+
+    el.innerHTML = albumHTML
+
+    document.querySelector('.albums-container').appendChild(el)
   }
 
   async function renderGallery () {
