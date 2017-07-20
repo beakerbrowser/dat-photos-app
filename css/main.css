@@ -19,27 +19,48 @@ header {
   margin: auto;
 }
 
+.album {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
 
 .album img,
-.album.empty div.placeholder {
+.album div.placeholder {
   width: 200px;
   height: 200px;
   border-radius: 4px;
   margin-bottom: 10px;
+  border: 2px solid transparent;
 }
 
 .album img {
 
 }
 
-.album.empty div.placeholder {
+.album div.placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eee;
+}
+
+.album.create-album div.placeholder {
+  border: 2px dashed rgba(0,0,0,.15);
+  color: #009688;
+  font-size: 48px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.album.create-album div.placeholder:hover {
+  background: rgba(0,0,0,.025);
+}
+
+.album.empty div.placeholder {
+  background: rgba(0,0,0, .05);
   font-size: 14px;
   font-style: italic;
-  color: rgba(0,0,0,.54);
+  font-weight: 300;
+  color: rgba(0,0,0,.45);
 }
 
 .album .title,
