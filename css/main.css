@@ -4,14 +4,6 @@ body {
   color: #333;
 }
 
-header {
-  display: flex;
-  justify-content: flex-end;
-  height: 60px;
-  align-items: center;
-  padding: 0 15px;
-}
-
 .albums-container {
   display: flex;
   padding: 2rem 0;
