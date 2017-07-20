@@ -1,0 +1,33 @@
+.gallery-images {
+  margin-top: 15px;
+  padding: 0 15px;
+  position: relative;
+}
+
+.gallery-images:empty:before {
+  position: absolute;
+  left: 42%;
+  top: 100px;
+  content: '*';
+  font-size: 350px;
+  color: #eee;
+}
+
+.gallery-images img {
+  display: flex;
+  max-width: 225px;
+  display: inline-block;
+  position: relative;
+  border: 15px solid transparent;
+  transition: all .2s ease-in-out;
+  position: relative;
+}
+
+.gallery-images img:hover {
+  transform: scale(.95);
+}
+
+.gallery-images img.selected {
+  border: 15px solid #eee;
+  transform: scale(.95);
+}

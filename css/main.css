@@ -1,0 +1,109 @@
+body {
+  font-family: BlinkMacSystemFont;
+  margin: 0;
+  color: #333;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  height: 60px;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.albums-container {
+  display: flex;
+  padding: 2rem 0;
+  max-width: 1050px;
+  margin: auto;
+}
+
+
+.album img,
+.album.empty div.placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.album img {
+
+}
+
+.album.empty div.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(0,0,0,.54);
+}
+
+.album .title,
+.album .photo-count {
+  font-size: 12px;
+}
+
+.album .title {
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.album .photo-count {
+  color: rgba(0,0,0,0.54);
+  font-weight: 300;
+}
+
+input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer !important;
+}
+
+label[for="files"] {
+  position: relative;
+}
+
+.actions {
+  display: block;
+  margin-bottom: 1em;
+}
+
+#prompt {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  z-index: 3;
+  font-size: 14px;
+}
+
+#prompt .content {
+  width: 400px;
+  border-radius: 5px;
+  background: #fff;
+  border: 2px solid #009688;
+  margin: auto;
+  margin-top: 100px;
+  padding: 20px;
+}
+
+#prompt .content p {
+  margin-top: 0;
+}
+
+#prompt .content .btn {
+  margin-left: 0;
+  margin-top: 10px;
+}
+
+#prompt:empty {
+  display: none;
+}
