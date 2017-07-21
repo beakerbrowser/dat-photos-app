@@ -49,3 +49,9 @@ input[type="file"] {
 label[for="files"] {
   position: relative;
 }
+
+textarea#url {
+  position: absolute;
+  left: -1000px;
+  opacity: 0;
+}
