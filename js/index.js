@@ -118,8 +118,9 @@
     const images = await album.readdir('/images')
 
     // create the album element
-    const el = document.createElement('div')
+    const el = document.createElement('a')
     el.classList.add('album')
+    el.href = album.url
 
     if (!images.length) {
       el.classList.add('empty')
