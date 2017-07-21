@@ -13,7 +13,6 @@
   shareBtn.addEventListener('click', onShare)
 
   try {
-    input = document.querySelector('input[type="file"]')
     archive = new DatArchive(window.location)
     archiveInfo = await archive.getInfo()
     albums = JSON.parse(await archive.readFile('albums.json'))
