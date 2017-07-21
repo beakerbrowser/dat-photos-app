@@ -229,11 +229,4 @@
       document.querySelector('#prompt').innerHTML = html
     }
   }
-
-  // TODO omit?
-  function createImageEl (src) {
-    const img = document.createElement('img')
-    img.src = src
-    return img
-  }
 })()
