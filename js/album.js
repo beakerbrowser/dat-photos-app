@@ -109,16 +109,15 @@
   function renderApp () {
     // clear the prompt
     updatePrompt('')
-    renderAlbums()
+    renderAlbum()
 
-    // document.getElementById('more-btn').addEventListener('click', function (e) {
-      // document.querySelector('.more-dropdown').classList.toggle('visible')
-    // })
+    document.getElementById('more-btn').addEventListener('click', function (e) {
+      document.querySelector('.more-dropdown').classList.toggle('visible')
+    })
 
-    // document.getElementById('delete-selected').addEventListener('click', onDeleteSelected)
+    document.getElementById('delete-selected').addEventListener('click', onDeleteSelected)
 
-    document.querySelectorAll('.create-album').forEach(el => el.addEventListener('click', onCreateAlbum))
-    /*
+    document.querySelector('input[type="file"]').addEventListener('change', function (e) {
       if (e.target.files) {
         const {files} = e.target
 
@@ -142,7 +141,7 @@
           reader.readAsArrayBuffer(file)
         }
       }
-    })*/
+    })
   }
 
   async function appendAlbum (album) {
@@ -175,7 +174,7 @@
     document.querySelector('.albums-container').appendChild(el)
   }
 
-  async function renderGallery () {
+  async function renderAlbum () {
     try {
       const paths = await archive.readdir('images')
 
@@ -195,7 +194,7 @@
     const img = document.createElement('img')
     img.src = src
     img.addEventListener('click', onToggleSelected)
-    document.querySelector('.gallery-images').appendChild(img)
+    document.querySelector('.album-images').appendChild(img)
   }
 
   function renderUAPrompt () {
@@ -212,7 +211,7 @@
     const img = document.createElement('img')
     img.src = src
     img.addEventListener('click', onToggleSelected)
-    document.querySelector('.gallery-images').appendChild(img)
+    document.querySelector('.album-images').appendChild(img)
   }
 
   // helpers

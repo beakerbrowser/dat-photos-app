@@ -1,19 +1,23 @@
-.gallery-images {
+.album-images {
   margin-top: 15px;
   padding: 0 15px;
   position: relative;
 }
 
-.gallery-images:empty:before {
+.album-images:empty:before {
   position: absolute;
-  left: 42%;
-  top: 100px;
-  content: '*';
-  font-size: 350px;
-  color: #eee;
+  left: 0;
+  top: 30vh;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: rgba(0,0,0,.5);
+  content: 'No photos';
+  font-size: 16px;
+  font-style: italic;
 }
 
-.gallery-images img {
+.album-images img {
   display: flex;
   max-width: 225px;
   display: inline-block;
@@ -23,11 +27,11 @@
   position: relative;
 }
 
-.gallery-images img:hover {
+.album-images img:hover {
   transform: scale(.95);
 }
 
-.gallery-images img.selected {
+.album-images img.selected {
   border: 15px solid #eee;
   transform: scale(.95);
 }
