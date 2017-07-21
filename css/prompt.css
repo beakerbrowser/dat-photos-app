@@ -1,0 +1,35 @@
+#prompt {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  z-index: 3;
+  font-size: 14px;
+}
+
+#prompt .content {
+  width: 525px;
+  border-radius: 5px;
+  background: #fff;
+  border: 2px solid #009688;
+  margin: auto;
+  margin-top: 100px;
+  padding: 20px;
+}
+
+#prompt .content p {
+  margin-top: 0;
+}
+
+#prompt .content p:last-child {
+  margin-bottom: 0;
+}
+
+#prompt .content .btn {
+  margin-left: 0;
+  margin-top: 10px;
+}
+
+#prompt:empty {
+  display: none;
+}

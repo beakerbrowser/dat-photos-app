@@ -1,0 +1,17 @@
+body {
+  font-family: BlinkMacSystemFont;
+  margin: 0;
+  color: #333;
+}
+
+code {
+  display: block;
+  margin-top: 10px;
+  font-family: Consolas, Menlo, Monaco, 'Lucida Console', monospace;
+  font-size: 13px;
+  background: #eee;
+  padding: 10px;
+  border-radius: 3px;
+  color: rgba(0,0,0,.75);
+  border: 1px solid rgba(0,0,0,.075);
+}
