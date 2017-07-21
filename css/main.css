@@ -1,26 +1,32 @@
 .albums-container {
   display: flex;
+  flex-wrap: wrap;
   padding: 2rem 15px;
-  max-width: 1050px;
+  max-width: 900px;
   margin: auto;
 }
 
 .album {
   margin-right: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
+  text-decoration: none;
+}
+
+.album:hover img {
+  // TODO put hover state on image
 }
 
 .album img,
 .album div.placeholder {
   width: 200px;
   height: 200px;
-  border-radius: 4px;
+  border-radius: 5px;
   margin-bottom: 10px;
   border: 2px solid transparent;
 }
 
 .album img {
-
+  object-fit: cover;
 }
 
 .album div.placeholder {
@@ -57,6 +63,7 @@
 .album .title {
   font-weight: 500;
   margin-bottom: 3px;
+  color: #333;
 }
 
 .album .photo-count {
