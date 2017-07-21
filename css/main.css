@@ -6,7 +6,7 @@ body {
 
 .albums-container {
   display: flex;
-  padding: 2rem 0;
+  padding: 2rem 15px;
   max-width: 1050px;
   margin: auto;
 }
