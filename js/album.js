@@ -41,14 +41,6 @@
     window.location = myApp.url
   }
 
-  function onSelectImage (e) {
-    e.target.classList.add('selected')
-    shareBtn.disabled = false
-
-    // full src is dat://{key}/{path}, so strip dat://{key}
-    selectedImages.push(e.target.src.slice('dat://'.length + 64))
-  }
-
   function onToggleSelected (e) {
     e.target.classList.toggle('selected')
 
