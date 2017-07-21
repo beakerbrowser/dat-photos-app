@@ -42,7 +42,12 @@
   function onShare () {
     urlEl.select()
     document.execCommand('copy')
-    updatePrompt(`<p>Share your photo album's secret URL:</p><p><code>${archive.url}</code></p><p><em>URL copied to clipboard</em></p>`)
+    updatePrompt(`<div id="close-prompt">Close</div><p>Share your photo album's secret URL:</p><p><code>${archive.url}</code></p><p><em>URL copied to clipboard</em></p>`)
+
+    const closePromptBtn = document.getElementById('close-prompt')
+    closePromptBtn.addEventListener('click', function () {
+      updatePrompt('')
+    })
   }
 
   function onToggleSelected (e) {

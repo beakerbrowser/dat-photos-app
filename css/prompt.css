@@ -8,6 +8,7 @@
 }
 
 #prompt .content {
+  position: relative;
   width: 525px;
   border-radius: 5px;
   background: #fff;
@@ -32,4 +33,13 @@
 
 #prompt:empty {
   display: none;
+}
+
+#close-prompt {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: underline;
 }
