@@ -98,40 +98,10 @@
   function renderApp () {
     // clear the prompt
     updatePrompt('')
-    renderAlbums()
-
-    // document.getElementById('more-btn').addEventListener('click', function (e) {
-      // document.querySelector('.more-dropdown').classList.toggle('visible')
-    // })
-
-    // document.getElementById('delete-selected').addEventListener('click', onDeleteSelected)
 
     document.querySelectorAll('.create-album').forEach(el => el.addEventListener('click', onCreateAlbum))
-    /*
-      if (e.target.files) {
-        const {files} = e.target
 
-        for (let i = 0; i < files.length; i += 1) {
-          const reader = new FileReader()
-          const file = files[i]
-
-          reader.onload = async function () {
-            const path = `/images/${file.name}`
-
-            // only write the file if it doesn't already exist
-            try {
-              await archive.stat(path)
-            } catch (e) {
-              await archive.writeFile(path, reader.result)
-              await archive.commit()
-              appendImage(path)
-            }
-          }
-
-          reader.readAsArrayBuffer(file)
-        }
-      }
-    })*/
+    renderAlbums()
   }
 
   function renderAlbums () {
@@ -176,15 +146,6 @@
 
   function renderForkPrompt () {
     updatePrompt('<p>Welcome to Photos!</p><button id="fork-button" class="btn primary">Get started</button>')
-  }
-
-  function appendImage(src) {
-    if (typeof src !== 'string') return
-
-    const img = document.createElement('img')
-    img.src = src
-    img.addEventListener('click', onToggleSelected)
-    document.querySelector('.gallery-images').appendChild(img)
   }
 
   // helpers
