@@ -64,7 +64,6 @@
     console.log(cssFiles)
     for (let i = 0; i < cssFiles.length; i++) {
       const css = await archive.readFile(cssFiles[i])
-      console.log(css)
       await album.writeFile(cssFiles[i], css)
     }
 
