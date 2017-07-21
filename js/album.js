@@ -56,22 +56,6 @@
     else shareBtn.disabled = true
   }
 
-  async function onCreateAlbum (e) {
-    // create a new Dat archive
-    const album = await DatArchive.create()
-    const info = await album.getInfo()
-
-    // create the /images and /css directories
-    await album.mkdir('/images')
-    await album.mkdir('/css')
-
-    // write the albums URL to albums.json
-    albums.push(album.url)
-    await archive.writeFile('albums.json', JSON.stringify(albums))
-
-    // set up HTML and styles
-    let imagesHTML = ''
-
     /*
     if (e.target.files) {
       const {files} = e.target
@@ -100,27 +84,7 @@
       // write the index.html preview
       await album.writeFile('index.html', `<html>${styles}<h1>${info.title || ''}</h1><p>${info.description || ''}</p>${imagesHTML}</html>`)
       await album.commit()
-    } else {
-      imagesHTML = '<p>No photos</p>'
-    }
     */
-
-    // write album.html to index.html for album
-    const html = await archive.readFile('album.html')
-
-    const cssFiles = SHARED_CSS.concat(ALBUM_CSS)
-    for (let i = 0; i < cssFiles.length; i++) {
-      const css = await archive.readFile(cssFiles[i])
-      await album.writeFile(cssFiles[i], css)
-    }
-
-    // todo
-    // const js = await archive.readFile()
-    await album.writeFile('index.html', html)
-
-    // go to the new archive
-    window.location = album.url
-  }
 
   async function onDeleteSelected () {
     for (let i = 0; i < selectedImages.length; i++) {
@@ -177,12 +141,6 @@
         }
       }
     })*/
-  }
-
-  function renderAlbums () {
-    for (let i = 0; i < albums.length; i++) {
-      appendAlbum(new DatArchive(albums[i]))
-    }
   }
 
   async function appendAlbum (album) {
@@ -264,12 +222,5 @@
     } else {
       document.querySelector('#prompt').innerHTML = html
     }
-  }
-
-  // TODO omit?
-  function createImageEl (src) {
-    const img = document.createElement('img')
-    img.src = src
-    return img
   }
 })()
