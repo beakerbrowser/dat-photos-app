@@ -17,7 +17,7 @@
     archiveInfo = await archive.getInfo()
     albums = JSON.parse(await archive.readFile('albums.json'))
   } catch (err) {
-    renderPrompt('<p>Something went wrong.</p><a href="https://github.com/taravancil/p2p-photo-gallery">Report an issue</a>')
+    updatePrompt('<p>Something went wrong.</p><a href="https://github.com/taravancil/p2p-photo-gallery">Report an issue</a>')
   }
 
   // render fork prompt if user is not owner
