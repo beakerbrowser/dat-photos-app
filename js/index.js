@@ -1,5 +1,5 @@
 (async  function () {
-  const SHARED_CSS = ['css/buttons.css', 'css/header.css', 'css/base.css']
+  const SHARED_CSS = ['css/buttons.css', 'css/header.css', 'css/base.css', 'css/prompt.css']
   const ALBUM_CSS = ['css/album.css']
 
   // render prompt if not using Beaker
