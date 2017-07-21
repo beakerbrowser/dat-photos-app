@@ -44,29 +44,6 @@
     window.location = myApp.url
   }
 
-  function onSelectImage (e) {
-    e.target.classList.add('selected')
-    shareBtn.disabled = false
-
-    // full src is dat://{key}/{path}, so strip dat://{key}
-    selectedImages.push(e.target.src.slice('dat://'.length + 64))
-  }
-
-  function onToggleSelected (e) {
-    e.target.classList.toggle('selected')
-
-    // full src is dat://{key}/{path}, so strip dat://{key}
-    const path = e.target.src.slice('dat://'.length + 64)
-    const idx = selectedImages.indexOf(path)
-
-    // either add or remove the path to selectedImages
-    if (idx === -1) selectedImages.push(path)
-    else selectedImages.splice(idx, 1)
-
-    if (selectedImages.length) shareBtn.disabled = false
-    else shareBtn.disabled = true
-  }
-
   async function onCreateAlbum (e) {
     // create a new Dat archive
     const album = await DatArchive.create()
