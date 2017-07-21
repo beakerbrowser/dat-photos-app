@@ -17,8 +17,10 @@
     archive = new DatArchive(window.location)
     archiveInfo = await archive.getInfo()
 
-    // TODO
-    // albums = JSON.parse(await archive.readFile('albums.json'))
+    // Write album title and description if set
+    // TODO allow user to edit this after creating the album
+    document.querySelector('h1').innerHTML = archiveInfo.title || '<em>Untitled</em>'
+    document.querySelector('.desc').innerText = archiveInfo.description || ''
 
     // set value of hidden textarea to album's URL
     urlEl.innerHTML = archive.url
