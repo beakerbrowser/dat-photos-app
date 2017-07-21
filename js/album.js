@@ -53,9 +53,6 @@
     // either add or remove the path to selectedImages
     if (idx === -1) selectedImages.push(path)
     else selectedImages.splice(idx, 1)
-
-    if (selectedImages.length) shareBtn.disabled = false
-    else shareBtn.disabled = true
   }
 
   async function onDeleteSelected () {
