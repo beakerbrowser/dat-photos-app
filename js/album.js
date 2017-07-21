@@ -9,13 +9,19 @@
   let archive, archiveInfo, albums
   let selectedImages = []
 
+  const urlEl = document.getElementById('url')
   const shareBtn = document.getElementById('share-btn')
-  // shareBtn.addEventListener('click', onShare)
+  shareBtn.addEventListener('click', onShare)
 
   try {
     archive = new DatArchive(window.location)
     archiveInfo = await archive.getInfo()
-    albums = JSON.parse(await archive.readFile('albums.json'))
+
+    // TODO
+    // albums = JSON.parse(await archive.readFile('albums.json'))
+
+    // set value of hidden textarea to album's URL
+    urlEl.innerHTML = archive.url
   } catch (err) {
     updatePrompt('<p>Something went wrong.</p><a href="https://github.com/taravancil/p2p-photo-gallery">Report an issue</a>')
   }
@@ -31,14 +37,10 @@
 
   // events
 
-  async function onForkApp () {
-    // Wait for the archive's files to download
-    // TODO handle timeout
-    await archive.download('/')
-
-    // Fork the app and open the forked version
-    myApp = await DatArchive.fork(archive, {title: 'My Photos'})
-    window.location = myApp.url
+  function onShare () {
+    urlEl.select()
+    document.execCommand('copy')
+    updatePrompt(`<p>Share your photo album's secret URL:</p><p><code>${archive.url}</code></p><p><em>URL copied to clipboard</em></p>`)
   }
 
   function onToggleSelected (e) {
