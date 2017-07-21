@@ -58,36 +58,6 @@
     else shareBtn.disabled = true
   }
 
-    /*
-    if (e.target.files) {
-      const {files} = e.target
-
-      for (let i = 0; i < files.length; i += 1) {
-        const reader = new FileReader()
-        const file = files[i]
-
-        reader.onload = async function () {
-          const path = `/images/${file.name}`
-
-          // only write the file if it doesn't already exist
-          try {
-            await album.stat(path)
-          } catch (e) {
-            imagesHTML += `<img src='${path}'/>`
-            await album.writeFile(path, reader.result)
-            appendImage(path)
-          }
-        }
-
-        reader.readAsArrayBuffer(file)
-      }
-
-      // write album.js to index.js for album
-      // write the index.html preview
-      await album.writeFile('index.html', `<html>${styles}<h1>${info.title || ''}</h1><p>${info.description || ''}</p>${imagesHTML}</html>`)
-      await album.commit()
-    */
-
   async function onDeleteSelected () {
     for (let i = 0; i < selectedImages.length; i++) {
       const path = selectedImages[i]
@@ -199,10 +169,6 @@
 
   function renderUAPrompt () {
     updatePrompt('<p>Sorry >.< This app only works in the Beaker Browser.</p><a class="btn primary" href="https://beakerbrowser.com/docs/install/">Install Beaker</a>')
-  }
-
-  function renderForkPrompt () {
-    updatePrompt('<p>Welcome to Photos!</p><button id="fork-button" class="btn primary">Get started</button>')
   }
 
   function appendImage(src) {
