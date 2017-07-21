@@ -69,9 +69,6 @@
       await archive.unlink(selectedImages[i], 'binary')
     }
     await archive.commit()
-
-    // disable share button, since all selected photos were deleted
-    shareBtn.disabled = true
   }
 
   // renderers
