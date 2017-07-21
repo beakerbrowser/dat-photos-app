@@ -127,7 +127,7 @@
       albumHTML += '<div class="placeholder">No photos</div>'
     } else {
       // add the first image to the album preview
-      albumHTML += `<img src="dat://${album.url}${images[0]}"/>`
+      albumHTML += `<img src="${album.url}/images/${images[0]}"/>`
     }
 
     // add the title
