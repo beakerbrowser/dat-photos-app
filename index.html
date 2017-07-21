@@ -15,21 +15,15 @@
     <!-- TODO put ellipsis in :after -->
 
     <header>
-      <button id="share-btn" class="btn" disabled>Get sharing link</button>
-      <label class="btn primary" for="files">
-        Add photos +
-        <input type="file" name="files" accept="image/*" multiple/>
-      </label>
-      <button id="more-btn" class="btn more">
-        <span>▾</span>
-        <div class="more-dropdown">
-          <div id="delete-selected">Delete selected</div>
-          <a href="https://github.com/taravancil/p2p-photos/issues/">Report an issue</a>
-        </div>
-      </button>
+      <button class="create-album btn primary">Create album +</button>
     </header>
 
-    <div class="albums-container"></div>
+    <div class="albums-container">
+      <div class="create-album album" title="Create new album">
+        <div class="placeholder">+</div>
+        <div class="title">Create album</div>
+      </div>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
