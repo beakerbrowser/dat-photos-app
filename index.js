@@ -124,7 +124,8 @@
 
     document.getElementById('delete-selected').addEventListener('click', onDeleteSelected)
 
-    document.querySelector('input[type="file"]').addEventListener('change', function (e) {
+    document.querySelectorAll('.create-album').forEach(el => el.addEventListener('click', onCreateAlbum))
+    /*
       if (e.target.files) {
         const {files} = e.target
 
