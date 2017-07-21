@@ -170,20 +170,6 @@
     document.querySelector('.albums-container').appendChild(el)
   }
 
-  async function renderGallery () {
-    try {
-      const paths = await archive.readdir('images')
-
-      // TODO sort by ctime or mtime
-      for (let i = 0; i < paths.length; i++) {
-        appendImage(`/images/${paths[i]}`)
-      }
-    } catch (err) {
-      updatePrompt('<p>Something went wrong</p>')
-      console.error(err)
-    }
-  }
-
   function renderUAPrompt () {
     updatePrompt('<p>Sorry >.< This app only works in the Beaker Browser.</p><a class="btn primary" href="https://beakerbrowser.com/docs/install/">Install Beaker</a>')
   }
