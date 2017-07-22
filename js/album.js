@@ -126,36 +126,6 @@
     })
   }
 
-  async function appendAlbum (album) {
-    const info = await album.getInfo()
-    let albumHTML = ''
-
-    // get the count of images in the album
-    const images = await album.readdir('/images')
-
-    // create the album element
-    const el = document.createElement('div')
-    el.classList.add('album')
-
-    if (!images.length) {
-      el.classList.add('empty')
-      albumHTML += '<div class="placeholder">No photos</div>'
-    } else {
-      // add the first image to the album preview
-      albumHTML += `<img src="dat://${album.url}${images[0]}"/>`
-    }
-
-    // add the title
-    albumHTML += `<div class="title">${info.title || '<em>Untitled</em>'}</div>`
-
-    // add the image count to the HTML
-    albumHTML += `<div class="photo-count">${images.length} photos</div>`
-
-    el.innerHTML = albumHTML
-
-    document.querySelector('.albums-container').appendChild(el)
-  }
-
   async function renderAlbum () {
     try {
       const paths = await archive.readdir('images')
