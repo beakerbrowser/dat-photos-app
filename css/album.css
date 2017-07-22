@@ -30,12 +30,15 @@ h1 {
 
 .album-images img {
   display: flex;
-  max-width: 225px;
+  width: 300px;
+  height: 300px;
   display: inline-block;
   position: relative;
   border: 15px solid transparent;
   transition: all .2s ease-in-out;
   position: relative;
+  cursor: pointer;
+  object-fit: cover;
 }
 
 .album-images img:hover {
