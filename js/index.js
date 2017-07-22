@@ -1,7 +1,4 @@
 (async  function () {
-  const SHARED_CSS = ['css/buttons.css', 'css/header.css', 'css/base.css', 'css/prompt.css']
-  const ALBUM_CSS = ['css/album.css']
-
   // render prompt if not using Beaker
   if (!navigator.userAgent.includes('BeakerBrowser')) {
     renderUAPrompt()
@@ -51,25 +48,15 @@
 
     // create the /images and /css directories
     await album.mkdir('/images')
-    await album.mkdir('/css')
 
-    // write the albums URL to albums.json
+    // write the album's URL to localStorage
     albums.push(album.url)
     window.localStorage.setItem(`${archiveInfo.key}-albums`, JSON.stringify(albums))
 
-    const html = await archive.readFile('album.html')
-    const js = await archive.readFile('/js/album.js')
-
-    const cssFiles = SHARED_CSS.concat(ALBUM_CSS)
-    console.log(cssFiles)
-    for (let i = 0; i < cssFiles.length; i++) {
-      const css = await archive.readFile(cssFiles[i])
-      await album.writeFile(cssFiles[i], css)
-    }
 
     // write the album's assets
+    const html = await archive.readFile('album.html')
     await album.writeFile('index.html', html)
-    await album.writeFile('index.js', js)
     await album.commit()
 
     // go to the new archive
