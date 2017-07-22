@@ -10,6 +10,11 @@ header > div {
   display: flex;
 }
 
-header > div.info {
-  align-items: baseline;
+header a {
+  color: #009688;
+  text-decoration: none;
+}
+
+header a:hover {
+  text-decoration: underline;
 }

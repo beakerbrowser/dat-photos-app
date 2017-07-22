@@ -1,3 +1,7 @@
+header {
+  justify-content: flex-end !important;
+}
+
 .albums-container {
   display: flex;
   flex-wrap: wrap;
