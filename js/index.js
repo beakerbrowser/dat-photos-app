@@ -18,7 +18,7 @@
   try {
     archive = new DatArchive(window.location)
     archiveInfo = await archive.getInfo()
-    albums = JSON.parse(await archive.readFile('albums.json'))
+    albums = JSON.parse(window.localStorage.getItem(`${archiveInfo.key}-albums`)) || []
   } catch (err) {
     updatePrompt('<p>Something went wrong.</p><a href="https://github.com/taravancil/p2p-photo-gallery">Report an issue</a>')
   }
@@ -55,7 +55,7 @@
 
     // write the albums URL to albums.json
     albums.push(album.url)
-    await archive.writeFile('albums.json', JSON.stringify(albums))
+    window.localStorage.setItem(`${archiveInfo.key}-albums`, JSON.stringify(albums))
 
     const html = await archive.readFile('album.html')
     const js = await archive.readFile('/js/album.js')
