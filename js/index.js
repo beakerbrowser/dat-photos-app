@@ -5,6 +5,13 @@
     return
   }
 
+  const IMAGE_ROTATION = {
+    1: 'rotate(0deg)',
+    3: 'rotate(180deg)',
+    6: 'rotate(90deg)',
+    8: 'rotate(270deg)'
+  }
+
   // setup
   let archive, archiveInfo, albums
   let selectedImages = []
@@ -108,12 +115,14 @@
 
       const imgPath = `${album.url}/images/${images[idx]}`
       // TODO why isn't this returning an ArrayBuffer?
-      // const buf = await album.readFile(`/images/${images[idx]}`, 'binary')
+      let buf = await album.readFile(`/images/${images[idx]}`, 'binary')
+      if (buf instanceof Uint8Array) {
+        buf = buf.buffer
+      }
 
       // get the orientation of the image to preview
-      // const orientation = readOrientationMetadata(buf)
-      // albumHTML += `<img style="transform: ${IMAGE_ROTATION[orientation]};" src="${imgPath}"/>`
-      albumHTML += `<img src="${imgPath}"/>`
+      const orientation = readOrientationMetadata(buf)
+      albumHTML += `<img style="transform: ${IMAGE_ROTATION[orientation]};" src="${imgPath}"/>`
     }
 
     // add the title
@@ -164,5 +173,40 @@
     } else {
       document.querySelector('#prompt').innerHTML = html
     }
+  }
+
+  function readOrientationMetadata (buf) {
+    console.log(buf)
+    const scanner = new DataView(buf)
+    let idx = 0
+    let value = 1 // Non-rotated is the default
+
+    if(buf.length < 2 || scanner.getUint16(idx) != 0xFFD8) {
+      // not a JPEG
+      return
+    }
+
+    idx += 2
+
+    let maxBytes = scanner.byteLength;
+    while(idx < maxBytes - 2) {
+      let uint16 = scanner.getUint16(idx);
+      idx += 2
+      switch(uint16) {
+        case 0xFFE1: // Start of EXIF
+          var exifLength = scanner.getUint16(idx)
+          maxBytes = exifLength - idx
+          idx += 2
+          break
+        case 0x0112: // Orientation tag
+          // Read the value, its 6 bytes further out
+          // See page 102 at the following URL
+          // http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf
+          value = scanner.getUint16(idx + 6, false)
+          maxBytes = 0; // Stop scanning
+          break
+      }
+    }
+    return value
   }
 })()
