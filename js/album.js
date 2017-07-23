@@ -26,6 +26,9 @@
 
     // Write album title and description if set
     // TODO allow user to edit this after creating the album
+    document.title = archiveInfo.title || 'Untitled'
+    if (archiveInfo.description) document.title += `- ${archiveInfo.description}`
+
     document.querySelector('h1').innerHTML = archiveInfo.title || '<em>Untitled</em>'
     document.querySelector('.desc').innerText = archiveInfo.description || ''
 
