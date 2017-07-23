@@ -11,9 +11,36 @@ header {
 }
 
 .album {
+  position: relative;
   margin-right: 20px;
   margin-bottom: 35px;
   text-decoration: none;
+}
+
+.album .dropdown-btn {
+  opacity: 0;
+  position: absolute;
+  z-index: 3;
+  top: 5px;
+  right: 5px;
+  width: 22px;
+  height: 21px;
+  background: rgba(255,255,255,.7);
+  text-align: center;
+  font-size: 25px;
+  color: rgba(0,0,0,.7);
+  border: 1px solid rgba(0,0,0,.075);
+  border-radius: 3px;
+  line-height: 15px;
+  vertical-align: middle;
+}
+
+.album:hover .dropdown-btn {
+  opacity: 1;
+}
+
+.album:hover .dropdown-btn:hover {
+  color: #000;
 }
 
 .album:hover img {

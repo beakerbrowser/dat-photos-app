@@ -10,7 +10,7 @@
     3: 'rotate(180deg)',
     6: 'rotate(90deg)',
     8: 'rotate(270deg)'
-  };
+  }
 
   // setup
   let archive, archiveInfo, albums
@@ -203,5 +203,5 @@
       }
     }
     return value
-}
+  }
 })()
