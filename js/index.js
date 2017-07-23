@@ -9,9 +9,6 @@
   let archive, archiveInfo, albums
   let selectedImages = []
 
-  const shareBtn = document.getElementById('share-btn')
-  // shareBtn.addEventListener('click', onShare)
-
   try {
     archive = new DatArchive(window.location)
     archiveInfo = await archive.getInfo()
