@@ -36,16 +36,6 @@
 
   // events
 
-  async function onForkApp () {
-    // Wait for the archive's files to download
-    // TODO handle timeout
-    await archive.download('/')
-
-    // Fork the app and open the forked version
-    myApp = await DatArchive.fork(archive, {title: 'My Photos'})
-    window.location = myApp.url
-  }
-
   async function onCreateAlbum (e) {
     // create a new Dat archive
     const album = await DatArchive.create()
