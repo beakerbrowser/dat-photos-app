@@ -80,7 +80,7 @@
       document.querySelector(`[src='${path}']`).parentNode.remove()
 
       // remove from archive
-      await archive.unlink(selectedImages[i], 'binary')
+      await archive.unlink(selectedImages[i])
     }
     await archive.commit()
   }
