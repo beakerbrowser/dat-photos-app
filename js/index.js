@@ -115,14 +115,21 @@
       const idx = Math.floor(Math.random() * images.length)
 
       const imgPath = `${album.url}/images/${images[idx]}`
-      // TODO why isn't this returning an ArrayBuffer?
-      let buf = await album.readFile(`/images/${images[idx]}`, 'binary')
-      if (buf instanceof Uint8Array) {
-        buf = buf.buffer
-      }
 
       // get the orientation of the image to preview
-      const orientation = readOrientationMetadata(buf)
+      let orientation = window.localStorage.getItem(imgPath)
+      if (!orientation) {
+        // TODO why isn't this returning an ArrayBuffer?
+        let buf = await album.readFile(`/images/${images[idx]}`, 'binary')
+        if (buf instanceof Uint8Array) {
+          buf = buf.buffer
+        }
+        orientation = readOrientationMetadata(buf)
+
+        // cache the image's orientation
+        window.localStorage.setItem(imgPath, orientation)
+      }
+
       albumHTML += `<img style="transform: ${IMAGE_ROTATION[orientation]};" src="${imgPath}"/>`
     }
 
