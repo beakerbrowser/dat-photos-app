@@ -43,13 +43,6 @@
     updatePrompt('<p>Something went wrong.</p><a href="https://github.com/taravancil/p2p-photo-gallery">Report an issue</a>')
   }
 
-  // render fork prompt if user is not owner
-  if (!archiveInfo.isOwner) {
-    renderForkPrompt()
-    document.getElementById('fork-button').addEventListener('click', onForkApp)
-    return
-  }
-
   renderApp()
 
   // events

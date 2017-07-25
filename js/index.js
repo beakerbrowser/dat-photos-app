@@ -163,10 +163,6 @@
     updatePrompt('<p>Sorry >.< This app only works in the Beaker Browser.</p><a class="btn primary" href="https://beakerbrowser.com/docs/install/">Install Beaker</a>')
   }
 
-  function renderForkPrompt () {
-    updatePrompt('<p>Welcome to Photos!</p><button id="fork-button" class="btn primary">Get started</button>')
-  }
-
   // helpers
 
   function toggleAlbumDropdown (e) {
