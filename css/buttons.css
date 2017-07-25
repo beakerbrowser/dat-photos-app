@@ -75,6 +75,7 @@ a.btn {
 
 .more-dropdown > *:hover {
   background: #e0f2f1;
+  text-decoration: none;
 }
 
 .more-dropdown a {
