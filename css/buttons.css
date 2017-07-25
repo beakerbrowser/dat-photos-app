@@ -108,3 +108,7 @@ a.btn {
   display: block;
   padding: 7px 16px;
 }
+
+.dropdown > *:hover {
+  background: rgba(0,0,0, .025);
+}
