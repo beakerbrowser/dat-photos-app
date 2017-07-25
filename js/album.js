@@ -90,6 +90,15 @@
     await archive.commit()
   }
 
+  function onEditInfo () {
+    // TODO
+    // replace the h1 and description with inputs
+
+    // add a save button
+
+    // add an event listener to the save button
+  }
+
   // renderers
 
   function renderApp () {
@@ -101,6 +110,8 @@
       document.querySelector('.more-dropdown').classList.toggle('visible')
     })
 
+    // TODO
+    // document.getElementById('edit-info').addEventListener('click', onEditInfo)
     document.getElementById('delete-selected').addEventListener('click', onDeleteSelected)
 
     document.querySelector('input[type="file"]').addEventListener('change', function (e) {
