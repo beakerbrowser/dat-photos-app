@@ -61,7 +61,7 @@
   }
 
   function onToggleSelected (e) {
-    e.target.classList.toggle('selected')
+    e.target.parentNode.classList.toggle('selected')
 
     // full src is dat://{key}/{path}, so strip dat://{key}
     const path = e.target.src.slice('dat://'.length + 64)
@@ -77,7 +77,7 @@
       const path = selectedImages[i]
 
       // remove from DOM
-      document.querySelector(`[src='${path}']`).remove()
+      document.querySelector(`[src='${path}']`).parentNode.remove()
 
       // remove from archive
       await archive.unlink(selectedImages[i], 'binary')
@@ -152,11 +152,16 @@
   function appendImage(src, orientation=1) {
     if (typeof src !== 'string') return
 
+    const el = document.createElement('div')
+    el.classList.add('img-container')
+
     const img = document.createElement('img')
     img.src = src
     img.style.transform = IMAGE_ROTATION[orientation]
     img.addEventListener('click', onToggleSelected)
-    document.querySelector('.album-images').appendChild(img)
+
+    el.appendChild(img)
+    document.querySelector('.album-images').appendChild(el)
   }
 
   // helpers
