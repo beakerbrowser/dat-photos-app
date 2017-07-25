@@ -43,10 +43,6 @@ header {
   color: #000;
 }
 
-.album:hover img {
-  // TODO put hover state on image
-}
-
 .album img,
 .album div.placeholder {
   width: 200px;
