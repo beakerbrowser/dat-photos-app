@@ -19,16 +19,17 @@
   try {
     archive = new DatArchive(window.location)
     archiveInfo = await archive.getInfo()
-    albums = JSON.parse(window.localStorage.getItem(`${archiveInfo.key}-albums`)) || []
   } catch (err) {
     updatePrompt('<p>Something went wrong.</p><a href="https://github.com/taravancil/p2p-photo-gallery">Report an issue</a>')
   }
 
-  // render fork prompt if user is not owner
-  if (!archiveInfo.isOwner) {
-    renderForkPrompt()
-    document.getElementById('fork-button').addEventListener('click', onForkApp)
-    return
+  const albumsData = window.localStorage.getItem(`${archiveInfo.key}-albums`)
+  if (albumsData) {
+    albums = JSON.parse(albumsData)
+  } else {
+    console.log('else')
+    albums = []
+    window.localStorage.setItem(`${archiveInfo.key}-albums`, '[]')
   }
 
   renderApp()
