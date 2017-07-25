@@ -68,8 +68,18 @@
     window.location = album.url
   }
 
-  async function onDeleteAlbum () {
-    // TODO
+  async function onDeleteAlbum (e) {
+    e.preventDefault()
+    e.stopPropagation()
+
+    const url = e.target.dataset.album
+
+    // remove the album element from DOM
+    document.querySelector('.albums-container').removeChild(document.querySelector(`a.album[href="${url}"]`))
+
+    // remove album URL from storage
+    albums.splice(albums.indexOf(url), 1)
+    window.localStorage.setItem(`${archiveInfo.key}-albums`, JSON.stringify(albums))
   }
 
   // renderers
@@ -143,11 +153,11 @@
     dropdownBtn.addEventListener('click', toggleAlbumDropdown)
     el.appendChild(dropdownBtn)
 
-    document.querySelectorAll('.delete-album-btn').forEach(function (el) {
-      el.addEventListener('click', deleteAlbum)
-    })
-
     document.querySelector('.albums-container').appendChild(el)
+
+    document.querySelectorAll('.delete-album-btn').forEach(function (el) {
+      el.addEventListener('click', onDeleteAlbum)
+    })
   }
 
   function renderUAPrompt () {
