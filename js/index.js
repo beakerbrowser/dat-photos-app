@@ -140,7 +140,9 @@
     albumHTML += `<div class="title">${info.title || '<em>Untitled</em>'}</div>`
 
     // add the image count to the HTML
-    albumHTML += `<div class="photo-count">${images.length} photos</div>`
+    let pluralize = ''
+    if (images.length !== 1) pluralize = 's'
+    albumHTML += `<div class="photo-count">${images.length} photo${pluralize}</div>`
 
     el.innerHTML += albumHTML
 
