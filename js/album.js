@@ -24,6 +24,11 @@
     archive = new DatArchive(window.location)
     archiveInfo = await archive.getInfo()
 
+    // remove header if not archive owner
+    if (!archiveInfo.isOwner) {
+      document.body.removeChild(document.querySelector('header'))
+    }
+
     // Write album title and description if set
     // TODO allow user to edit this after creating the album
     document.title = archiveInfo.title || 'Untitled'
