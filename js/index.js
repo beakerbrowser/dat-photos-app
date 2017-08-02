@@ -38,7 +38,6 @@
   async function onCreateAlbum (e) {
     // create a new Dat archive
     const album = await DatArchive.create()
-    const info = await album.getInfo()
 
     // create the /images and /css directories
     await album.mkdir('/images')
