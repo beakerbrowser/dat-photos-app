@@ -1,7 +1,7 @@
 This is a decentralized, peer-to-peer photos applicaton for the [Beaker
 browser](https://beakerbrowser.com).
 
-*Create and share photos completely independently. No third party required.*
+*Create and share photo albums completely independently. No third party required.*
 
 ## Instructions
 
