@@ -23,13 +23,12 @@
     updatePrompt('<p>Something went wrong.</p><a href="https://github.com/taravancil/p2p-photo-gallery">Report an issue</a>')
   }
 
-  const albumsData = window.localStorage.getItem(`${archiveInfo.key}-albums`)
+  const albumsData = window.localStorage.getItem('albums')
   if (albumsData) {
     albums = JSON.parse(albumsData)
   } else {
-    console.log('else')
     albums = []
-    window.localStorage.setItem(`${archiveInfo.key}-albums`, '[]')
+    window.localStorage.setItem('albums', '[]')
   }
 
   renderApp()
@@ -46,7 +45,7 @@
 
     // write the album's URL to localStorage
     albums.push(album.url)
-    window.localStorage.setItem(`${archiveInfo.key}-albums`, JSON.stringify(albums))
+    window.localStorage.setItem('albums', JSON.stringify(albums))
 
 
     // write the album's assets
@@ -69,7 +68,7 @@
 
     // remove album URL from storage
     albums.splice(albums.indexOf(url), 1)
-    window.localStorage.setItem(`${archiveInfo.key}-albums`, JSON.stringify(albums))
+    window.localStorage.setItem('albums', JSON.stringify(albums))
   }
 
   // renderers
