@@ -39,7 +39,7 @@
     // create a new Dat archive
     const album = await DatArchive.create()
 
-    // create the /images and /css directories
+    // create the /images directory
     await album.mkdir('/images')
 
     // write the album's URL to localStorage
