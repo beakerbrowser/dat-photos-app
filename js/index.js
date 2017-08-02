@@ -91,7 +91,7 @@
     const info = await album.getInfo()
     let albumHTML = ''
 
-    // get the count of images in the album
+    // get all of the images in the album
     const images = await album.readdir('/images')
 
     // create the album element
