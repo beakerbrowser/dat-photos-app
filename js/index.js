@@ -49,7 +49,8 @@
 
     // write the album's assets
     const html = await archive.readFile('album.html')
-    await album.writeFile('index.html', html)
+    html2 = html.replace(/{{DAT_ARCHIVE_URL}}/g, archive.url)
+    await album.writeFile('index.html', html2)
     await album.commit()
 
     // go to the new archive
