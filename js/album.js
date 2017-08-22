@@ -110,32 +110,58 @@
     document.querySelector('input[type="file"]').addEventListener('change', function (e) {
       if (e.target.files) {
         const {files} = e.target
-
-        for (let i = 0; i < files.length; i += 1) {
-          const reader = new FileReader()
-          const file = files[i]
-
-          reader.onload = async function () {
-            const path = `/images/${file.name}`
-            const orientation = readOrientationMetadata(reader.result)
-
-            // write the orientiation metadata to localStorage
-            localStorage.setItem(`${archive.url}${path}`, orientation)
-
-            // only write the file if it doesn't already exist
-            try {
-              await archive.stat(path)
-            } catch (e) {
-              await archive.writeFile(path, reader.result)
-              await archive.commit()
-              appendImage(path, orientation)
-            }
-          }
-
-          reader.readAsArrayBuffer(file)
-        }
+        readFiles(files);
       }
     })
+
+    document.addEventListener('dragover', function(e) {
+      document.body.style.opacity = 0.4
+      e.preventDefault()
+    }, false)
+
+    document.addEventListener('dragleave', function(e) {
+      document.body.style.opacity = 1.0
+    }, false)
+
+    document.addEventListener('drop', function(e) {
+      e.stopPropagation()
+      e.preventDefault()
+
+      const files = e.dataTransfer.files
+      readFiles(files)
+
+      document.body.style.opacity = 1.0
+      return false;
+    }, false)
+  }
+
+  function readFiles(files) {
+    for (let i = 0; i < files.length; i += 1) {
+      const reader = new FileReader()
+      const file = files[i]
+
+      reader.onload = async function () {
+        const path = `/images/${file.name}`
+        const orientation = readOrientationMetadata(reader.result)
+
+        // write the orientiation metadata to localStorage
+        localStorage.setItem(`${archive.url}${path}`, orientation)
+
+        // only write the file if it doesn't already exist
+        try {
+          await archive.stat(path)
+        } catch (e) {
+          await archive.writeFile(path, reader.result)
+          await archive.commit()
+          appendImage(path, orientation)
+        }
+      }
+
+      if (file.type.match(/image.*/))
+      {
+        reader.readAsArrayBuffer(file)
+      }
+    }
   }
 
   async function renderAlbum () {
