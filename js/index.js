@@ -1,4 +1,4 @@
-(async  function () {
+(async function () {
   // render prompt if not using Beaker
   if (!navigator.userAgent.includes('BeakerBrowser')) {
     renderUAPrompt()
@@ -46,7 +46,6 @@
     // write the album's URL to localStorage
     albums.push(album.url)
     window.localStorage.setItem('albums', JSON.stringify(albums))
-
 
     // write the album's assets
     const html = await archive.readFile('album.html')
@@ -187,18 +186,18 @@
     let idx = 0
     let value = 1 // Non-rotated is the default
 
-    if(buf.length < 2 || scanner.getUint16(idx) != 0xFFD8) {
+    if (buf.length < 2 || scanner.getUint16(idx) != 0xFFD8) {
       // not a JPEG
       return
     }
 
     idx += 2
 
-    let maxBytes = scanner.byteLength;
-    while(idx < maxBytes - 2) {
-      let uint16 = scanner.getUint16(idx);
+    let maxBytes = scanner.byteLength
+    while (idx < maxBytes - 2) {
+      let uint16 = scanner.getUint16(idx)
       idx += 2
-      switch(uint16) {
+      switch (uint16) {
         case 0xFFE1: // Start of EXIF
           var exifLength = scanner.getUint16(idx)
           maxBytes = exifLength - idx
@@ -209,7 +208,7 @@
           // See page 102 at the following URL
           // http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf
           value = scanner.getUint16(idx + 6, false)
-          maxBytes = 0; // Stop scanning
+          maxBytes = 0 // Stop scanning
           break
       }
     }
