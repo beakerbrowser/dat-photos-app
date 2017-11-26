@@ -191,7 +191,7 @@
     el.classList.add('img-container')
 
     const img = document.createElement('img')
-    img.src = src
+    img.src = encodeURI(src)
     img.style.transform = IMAGE_ROTATION[orientation]
     img.addEventListener('click', onToggleSelected)
 
