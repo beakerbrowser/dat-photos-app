@@ -62,7 +62,8 @@
     e.target.parentNode.classList.toggle('selected')
 
     // full src is dat://{key}/{path}, so strip dat://{key}
-    const path = e.target.src.slice('dat://'.length + 64)
+    const datHashLength = 64
+    const path = e.target.src.slice('dat://'.length + datHashLength)
     const idx = selectedImages.indexOf(path)
 
     // either add or remove the path to selectedImages
