@@ -72,16 +72,18 @@
   }
 
   async function onDeleteSelected () {
-    for (let i = 0; i < selectedImages.length; i++) {
-      const path = selectedImages[i]
-
-      // remove from DOM
-      document.querySelector(`[src='${path}']`).parentNode.remove()
-
-      // remove from archive
-      await archive.unlink(selectedImages[i])
+    for (let path of selectedImages) {
+      const imgTag = document.querySelector(`[src='${path}']`)
+      if (imgTag) {
+        // remove from DOM
+        imgTag.parentNode.remove()
+        // remove from archive
+        await archive.unlink(path)
+      }
     }
     await archive.commit()
+    // clear selectedImages array
+    selectedImages.length = 0
   }
 
   function onEditInfo () {
