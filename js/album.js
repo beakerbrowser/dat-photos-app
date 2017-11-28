@@ -62,7 +62,8 @@
     e.target.parentNode.classList.toggle('selected')
 
     // full src is dat://{key}/{path}, so strip dat://{key}
-    const path = e.target.src.slice('dat://'.length + 64)
+    const datHashLength = 64
+    const path = e.target.src.slice('dat://'.length + datHashLength)
     const idx = selectedImages.indexOf(path)
 
     // either add or remove the path to selectedImages
@@ -71,16 +72,18 @@
   }
 
   async function onDeleteSelected () {
-    for (let i = 0; i < selectedImages.length; i++) {
-      const path = selectedImages[i]
-
-      // remove from DOM
-      document.querySelector(`[src='${path}']`).parentNode.remove()
-
-      // remove from archive
-      await archive.unlink(selectedImages[i])
+    for (let path of selectedImages) {
+      const imgTag = document.querySelector(`[src='${path}']`)
+      if (imgTag) {
+        // remove from DOM
+        imgTag.parentNode.remove()
+        // remove from archive
+        await archive.unlink(path)
+      }
     }
     await archive.commit()
+    // clear selectedImages array
+    selectedImages.length = 0
   }
 
   function onEditInfo () {
@@ -190,7 +193,7 @@
     el.classList.add('img-container')
 
     const img = document.createElement('img')
-    img.src = src
+    img.src = encodeURI(src)
     img.style.transform = IMAGE_ROTATION[orientation]
     img.addEventListener('click', onToggleSelected)
 
