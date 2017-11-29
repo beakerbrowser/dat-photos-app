@@ -40,7 +40,7 @@
     // set value of hidden textarea to album's URL
     urlEl.innerHTML = archive.url
   } catch (err) {
-    updatePrompt('<p>Something went wrong.</p><a href="https://github.com/taravancil/p2p-photo-gallery">Report an issue</a>')
+    updatePrompt('<p>Something went wrong.</p><a href="https://github.com/beakerbrowser/dat-photos-app">Report an issue</a>')
   }
 
   renderApp()
