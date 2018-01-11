@@ -3,6 +3,8 @@ browser](https://beakerbrowser.com).
 
 *Create and share photo albums completely independently. No third party required.*
 
+![Screenshot](photos-app-screenshot.png)
+
 ## Instructions
 
 With [Beaker](https://beakerbrowser.com), open the app's URL:
